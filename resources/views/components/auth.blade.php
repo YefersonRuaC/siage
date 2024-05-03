@@ -2,19 +2,19 @@
     <header class="flex mb-2">
         <div class="w-auto h-auto">
             <a href="/">
-                <img src="{{ asset('images/logo1.png') }}" alt="Logo sena">
+                <img src="{{ asset('images/logo1.png') }}" alt="Logo sena" class="hover:brightness-75 transition duration-500">
             </a>
         </div>
         <div class="flex flex-col justify-center">
             <div class="border-b-4 border-blue-700">
-                <h1 class="text-4xl text-blue-900 mb-1">
+                <h1 class="text-3xl md:text-4xl text-blue-900 mb-1">
                     <span class="font-extrabold">S</span>istema <span class="font-extrabold">I</span>ntegrado de 
                     <span class="font-extrabold">A</span>dministración y <span class="font-extrabold">G</span>estión 
                     <span class="font-extrabold">E</span>ducativa
                 </h1>
             </div>
             <div class="mt-1">
-                <h2 class="text-2xl text-lime-600 font-bold">Apoyo a la formación</h2>
+                <h2 class="text-xl md:text-2xl text-lime-600 font-bold">Apoyo a la formación</h2>
             </div>
         </div>
         {{-- @if (Route::has('login'))

@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApoyoController;
 use App\Http\Controllers\AprendizController;
 use App\Http\Controllers\InstructorController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PracticaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
