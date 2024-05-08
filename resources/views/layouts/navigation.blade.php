@@ -5,9 +5,31 @@
             <div class="flex justify-center items-center">
                 <!-- Logo -->
                 <div class="">
+                @if (auth()->user()->rol === 1)
                     <a href="{{ route('aprendiz.index') }}">
                         <x-application-logo class="" />
                     </a>
+                @endif
+                @if (auth()->user()->rol === 2)
+                    <a href="{{ route('instructor.index') }}">
+                        <x-application-logo class="" />
+                    </a>
+                @endif
+                @if (auth()->user()->rol === 3)
+                    <a href="{{ route('admin.index') }}">
+                        <x-application-logo class="" />
+                    </a>
+                @endif
+                @if (auth()->user()->rol === 4)
+                    <a href="{{ route('apoyo.index') }}">
+                        <x-application-logo class="" />
+                    </a>
+                @endif
+                @if (auth()->user()->rol === 5)
+                    <a href="{{ route('practica.index') }}">
+                        <x-application-logo class="" />
+                    </a>
+                @endif
                 </div>
                 <div class="flex flex-col justify-center mr-8 md:mr-0">
                     <div class="border-b-4 border-blue-700">
@@ -75,13 +97,51 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+        @if (auth()->user()->rol === 1)
             <x-responsive-nav-link 
                 :href="route('aprendiz.index')" 
                 :active="request()->routeIs('aprendiz.index')"
                 class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
             >
-                {{ __('Index') }}
+                {{ __('Index aprendiz') }}
             </x-responsive-nav-link>
+        @endif
+        @if (auth()->user()->rol === 2)
+            <x-responsive-nav-link 
+                :href="route('instructor.index')" 
+                :active="request()->routeIs('aprendiz.index')"
+                class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
+            >
+                {{ __('Index instructor') }}
+            </x-responsive-nav-link>
+        @endif
+        @if (auth()->user()->rol === 3)
+            <x-responsive-nav-link 
+                :href="route('admin.index')" 
+                :active="request()->routeIs('aprendiz.index')"
+                class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
+            >
+                {{ __('Index admin') }}
+            </x-responsive-nav-link>
+        @endif
+        @if (auth()->user()->rol === 4)
+            <x-responsive-nav-link 
+                :href="route('apoyo.index')" 
+                :active="request()->routeIs('aprendiz.index')"
+                class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
+            >
+                {{ __('Index apoyo') }}
+            </x-responsive-nav-link>
+        @endif
+        @if (auth()->user()->rol === 5)
+            <x-responsive-nav-link 
+                :href="route('practica.index')" 
+                :active="request()->routeIs('aprendiz.index')"
+                class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
+            >
+                {{ __('Index practica') }}
+            </x-responsive-nav-link>
+        @endif
         </div>
 
         <!-- Responsive Settings Options -->
