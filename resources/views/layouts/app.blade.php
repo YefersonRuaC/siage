@@ -13,31 +13,31 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{{ asset('js/select2.min.js') }}"></script>
+
+
+        @livewireStyles
+        @stack('styles')
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-white">
             @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            {{-- @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif --}}
-
             <!-- Page Content -->
             <div class="md:flex mt-0 min-h-screen">
                 @include('layouts.aside')
 
-                <main class="flex-1 rounded-md mr-2 p-3">
+                <main class="flex-1 rounded-md p-3">
                     {{ $slot }}
                 </main>
             </div>
         </div>
+        
+        @livewireScripts
+        @stack('scripts')
     </body>
 </html>

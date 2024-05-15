@@ -14,5 +14,6 @@ class ImportLog extends Model
     protected $fillable = [
         'file_name',
         'file_path',
+        'ficha_id',
     ];
 }

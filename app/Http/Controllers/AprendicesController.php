@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Ficha;
 use App\Models\ImportLog;
 use Illuminate\Http\Request;
 use App\Imports\AprendizImport;
@@ -15,16 +16,24 @@ class AprendicesController extends Controller
      */
     public function index()
     {
-        return view('fichas.aprendices');
+        $fichas = Ficha::all();
+        // dd($fichas);
+
+        return view('fichas.aprendices', [
+            'fichas' => $fichas,
+        ]);
     }
 
     public function importar(Request $request)
     {
         $request->validate([
             'documento' => ['required','file','mimes:xlsx,xls,csv','max:2048'],
+            'ficha' => ['required'],
         ]);
 
         try {
+            // Obtener la ficha seleccionada
+            $ficha = Ficha::findOrFail($request->input('ficha'));
 
             if($request->hasFile('documento')) {
                 //Obtenemos la ruta (path) del documento que el usuario subio al servidor
@@ -39,15 +48,23 @@ class AprendicesController extends Controller
     
                 //Obtener la informacion que el usuario esta subiendo al importar el documento, toda es info se
                 //almacena en la vrble $datos
-                Excel::import(new AprendizImport(), $path);
+                Excel::import(new AprendizImport($ficha), $path);
     
                 // Registrar el archivo importado en la tabla de registro
                 ImportLog::create([
                     'file_name' => $request->file('documento')->getClientOriginalName(),
                     'file_path' => $request->file('documento')->getClientOriginalName(),
+                    'ficha_id' => $ficha->ficha,
                 ]);
     
-                return back()->with('success', 'Datos importados correctamente');
+                session()->flash('mensaje', 'Datos importados correctamente');
+                
+                if(auth()->user()->rol === 3) {
+                    return redirect()->route('admin.index');
+                }
+                if(auth()->user()->rol === 4) {
+                    return redirect()->route('apoyo.index');
+                }
             }
 
         //Si hay errores (el arreglo no esta vacio), mostramos la Exception lanzada desde AprendizImport.php

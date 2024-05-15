@@ -8,11 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Aprendiz extends Model
 {
     use HasFactory;
-
-    //Al no seguir las convenciones de laravel con el nombre de la tabla, le debemos indicar el nombre que le 
-    //pusimos a nuestra tabla
-    protected $table = 'aprendices';
-
     //Al no usar id como PK, especificamos que la llave primaria es 'documento'
     protected $primaryKey = 'documento';
 
@@ -26,6 +21,7 @@ class Aprendiz extends Model
         'celular',
         'email',
         'estado',
+        'ficha_id',
     ];
 
     //Relacionamos con la tabla 'fichas' usando la columna 'ficha'. ('ficha_id') y ('ficha') son los nombres 
