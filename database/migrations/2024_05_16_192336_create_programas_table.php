@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fichas', function (Blueprint $table) {
-            // $table->id('ficha');
-            $table->bigInteger('ficha')->primary()->unsigned();
-            $table->string('programa');
-            $table->string('jornada');
-            $table->integer('trimestre');
+        Schema::create('programas', function (Blueprint $table) {
+            // $table->id();
+            $table->id('programa');
+            $table->string('nombre_corto');
+            $table->string('nombre_completo');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fichas');
+        Schema::dropIfExists('programas');
     }
 };

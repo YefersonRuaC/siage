@@ -12,7 +12,7 @@ class Ficha extends Model
     //Al no usar id como PK, especificamos que la llave primaria es 'ficha'
     protected $primaryKey = 'ficha';
 
-    public $timestamps = false;
+    // public $timestamps = false;
 
     protected $fillable = [
         'ficha',

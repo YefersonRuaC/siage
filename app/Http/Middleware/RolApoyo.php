@@ -15,7 +15,7 @@ class RolApoyo
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->rol !== 4) {
+        if ($request->user()->rol != 4) {
 
             return redirect()->back();
         }

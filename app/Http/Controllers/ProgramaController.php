@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ficha;
+use App\Models\Programa;
 use Illuminate\Http\Request;
 
-class FichaController extends Controller
+class ProgramaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // return view('fichas.index');
+        return view('programas.index');
     }
 
     /**
@@ -20,17 +20,17 @@ class FichaController extends Controller
      */
     public function create()
     {
-        return view('fichas.create');
+        return view('programas.create');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ficha $ficha)
+    public function edit(Programa $programa)
     {
-        return view('fichas.edit', [
-            'ficha' => $ficha
-        ]);   
+        return view('programas.edit', [
+            'programa' => $programa
+        ]);
     }
 
     /**

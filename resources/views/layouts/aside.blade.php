@@ -2,7 +2,7 @@
     <div id="sidebar" class="sidebar transition-all duration-1000 ease-in-out md:h-full h-auto md:w-16 
         overflow-auto md:overflow-hidden border-r w-full md:hover:w-72 hover:bg-white hover:shadow-lg">
 
-    @if (auth()->user()->rol === 1)
+    @if (auth()->user()?->rol == 1)
         <div class="flex flex-col justify-between pt-4 md:w-max w-full">
             <div class="w-max flex justify-center items-center ml-2.5 gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-auto">
@@ -104,7 +104,7 @@
         </div>
     @endif
 
-    @if (auth()->user()->rol === 2)
+    @if (auth()->user()?->rol == 2)
         <div class="flex flex-col justify-between pt-4 md:w-max w-full">
             <div class="w-max flex justify-center items-center ml-2.5 gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-auto">
@@ -193,17 +193,17 @@
         </div>
     @endif
 
-    @if (auth()->user()->rol === 3 || auth()->user()->rol === 4)
+    @if (auth()->user()?->rol == 3 || auth()->user()?->rol == 4)
         <div class="flex flex-col justify-between pt-4 md:w-max w-full">
             <div class="w-max flex justify-center items-center ml-2.5 gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-auto">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
-                    @if (auth()->user()->rol === 3)
+                    @if (auth()->user()?->rol == 3)
                 <a href="{{ route('admin.index') }}" class="text-xl -ml-0.5 py-2 px-2 bg-gray-100 hover:bg-gray-200 rounded-md">Inicio:
                         <span class="font-bold mr-6">Admin</span>
                     @endif
-                    @if (auth()->user()->rol === 4)
+                    @if (auth()->user()?->rol == 4)
                 <a href="{{ route('apoyo.index') }}" class="text-xl -ml-0.5 py-2 px-2 bg-gray-100 hover:bg-gray-200 rounded-md">Inicio:
                         <span class="font-bold mr-6">Apoyo</span>
                     @endif
@@ -220,14 +220,14 @@
                     <x-dropdown align="right" width="w-full md:w-52">
                         <x-slot name="trigger">
                             <button class="flex w-full items-center gap-4 px-3 py-2 text-md leading-4 font-medium rounded-md hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                @if (auth()->user()->rol === 3)
+                                @if (auth()->user()?->rol == 3)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
                                 </svg>                                    
                                     <div class="flex w-full items-center justify-between">  
                                         <div class="text-xl">Fichas</div>
                                 @endif
-                                @if (auth()->user()->rol === 4)
+                                @if (auth()->user()?->rol == 4)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
                                 </svg>                                    
@@ -241,21 +241,67 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                        @if (auth()->user()->rol === 3)
+                        @if (auth()->user()?->rol == 3)
                             <x-dropdown-link :href="route('fichas.create')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Crear fichas') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('fichas.aprendices')" class="font-bold flex text-md items-center justify-center">
+                            <x-dropdown-link :href="route('fichas.importar')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Importar aprendices') }}
                             </x-dropdown-link>
                         @endif
 
-                        @if (auth()->user()->rol === 4)
+                        @if (auth()->user()?->rol == 4)
                             <x-dropdown-link :href="route('fichas.create')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Crear fichas') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('fichas.aprendices')" class="font-bold flex text-md items-center justify-center">
+                            <x-dropdown-link :href="route('fichas.importar')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Importar aprendices') }}
+                            </x-dropdown-link>
+                        @endif
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+
+                <div class="hover:bg-gray-100 min-w-max cursor-pointer ">
+                    <x-dropdown align="right" width="w-full md:w-52">
+                        <x-slot name="trigger">
+                            <button class="flex w-full items-center gap-4 px-3 py-2 text-md leading-4 font-medium rounded-md hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                @if (auth()->user()?->rol == 3)
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                </svg>                                                                      
+                                    <div class="flex w-full items-center justify-between">  
+                                        <div class="text-xl">Programas</div>
+                                @endif
+                                @if (auth()->user()?->rol == 4)
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                </svg>                                                                   
+                                    <div class="flex w-full items-center justify-between">  
+                                        <div class="text-xl">Programas</div>
+                                @endif
+                                    <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+                        <x-slot name="content">
+                        @if (auth()->user()?->rol == 3)
+                        <x-dropdown-link :href="route('programas.create')" class="font-bold flex text-md items-center justify-center">
+                            {{ __('Crear programas') }}
+                        </x-dropdown-link>
+                            <x-dropdown-link :href="route('programas.index')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Gestionar programas') }}
+                            </x-dropdown-link>
+                        @endif
+
+                        @if (auth()->user()?->rol == 4)
+                            <x-dropdown-link :href="route('programas.create')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Crear programas') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('programas.index')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Gestionar programas') }}
                             </x-dropdown-link>
                         @endif
                         </x-slot>
@@ -266,14 +312,14 @@
                     <x-dropdown align="right" width="w-full md:w-52">
                         <x-slot name="trigger">
                             <button class="flex w-full items-center gap-4 px-3 py-2 text-md leading-4 font-medium rounded-md hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                @if (auth()->user()->rol === 3)
+                                @if (auth()->user()?->rol == 3)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                 </svg>
                                     <div class="flex w-full items-center justify-between">  
                                         <div class="text-xl">Horarios</div>
                                 @endif
-                                @if (auth()->user()->rol === 4)
+                                @if (auth()->user()?->rol == 4)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                 </svg>
@@ -287,13 +333,13 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                        @if (auth()->user()->rol === 3)
+                        @if (auth()->user()?->rol == 3)
                             <x-dropdown-link :href="route('admin.index')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Index admin') }}
                             </x-dropdown-link>
                         @endif
 
-                        @if (auth()->user()->rol === 4)
+                        @if (auth()->user()?->rol == 4)
                             <x-dropdown-link :href="route('apoyo.index')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Index apoyo') }}
                             </x-dropdown-link>
@@ -306,14 +352,14 @@
                     <x-dropdown align="right" width="w-full md:w-52">
                         <x-slot name="trigger">
                             <button class="flex w-full items-center gap-4 px-3 py-2 text-md leading-4 font-medium rounded-md hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                @if (auth()->user()->rol === 3)
+                                @if (auth()->user()?->rol == 3)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                                 </svg>
                                     <div class="flex w-full items-center justify-between">  
                                         <div class="text-xl">Instructores</div>
                                 @endif
-                                @if (auth()->user()->rol === 4)
+                                @if (auth()->user()?->rol == 4)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                                 </svg>
@@ -327,7 +373,7 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                        @if (auth()->user()->rol === 3)
+                        @if (auth()->user()?->rol == 3)
                             <x-dropdown-link :href="route('admin.index')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Crear instructores') }}
                             </x-dropdown-link>
@@ -336,7 +382,7 @@
                             </x-dropdown-link>
                         @endif
 
-                        @if (auth()->user()->rol === 4)
+                        @if (auth()->user()?->rol == 4)
                             <x-dropdown-link :href="route('apoyo.index')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Crear instructores') }}
                             </x-dropdown-link>
@@ -351,7 +397,7 @@
         </div>
     @endif
 
-    @if (auth()->user()->rol === 5)
+    @if (auth()->user()?->rol == 5)
         <div class="flex flex-col justify-between pt-4 md:w-max w-full">
             <div class="w-max flex justify-center items-center ml-2.5 gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-auto">

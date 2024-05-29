@@ -22,7 +22,7 @@
             
             <div class="border-b border-gray-300 my-5"></div>
     
-            <form action="{{ url('/aprendices/importar') }}" method="POST" enctype="multipart/form-data" class="">
+            <form action="{{ url('/importar/aprendices') }}" method="POST" enctype="multipart/form-data" class="">
                 @csrf
                 {{--Ficha--}}
                 <div class="w-full">
@@ -34,7 +34,7 @@
                     >
                     <option value="" selected disabled>--Seleccione--</option>
                     @foreach ($fichas as $ficha)
-                        <option value="{{ $ficha->ficha }}">{{ $ficha->ficha }} {{ $ficha->programa }}</option>
+                        <option value="{{ $ficha->ficha }}">{{ $ficha->ficha }} | {{ $ficha->programa }}</option>
                     @endforeach
     
                     </select>

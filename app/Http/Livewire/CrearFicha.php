@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Ficha;
+use App\Models\Programa;
 use Livewire\Component;
 
 class CrearFicha extends Component
@@ -14,14 +15,14 @@ class CrearFicha extends Component
 
     protected $rules = [
         'ficha' => ['required', 'numeric', 'unique:'.Ficha::class],
-        'programa' => ['required', 'string'],
+        'programa' => ['required'],
         'jornada' => ['required', 'string', 'in:mañana,tarde,noche'],//select
         'trimestre' => ['required', 'numeric', 'in:1,2,3,4,5,6,7'],//select
     ];
 
     public function mount()
     {
-        // $this->programa = '';
+        $this->programa = '';
         $this->jornada = '';
         $this->trimestre = '';
     }
@@ -45,6 +46,11 @@ class CrearFicha extends Component
 
     public function render()
     {
-        return view('livewire.crear-ficha');
+        $programas = Programa::all();
+        // dd($programas);
+
+        return view('livewire.crear-ficha', [
+            'programas' => $programas,
+        ]);
     }
 }

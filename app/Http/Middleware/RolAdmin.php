@@ -15,7 +15,7 @@ class RolAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->rol !== 3) {
+        if ($request->user()->rol != 3) {
 
             // return redirect(RouteServiceProvider::HOME);
             // return redirect()->route('login');

@@ -15,7 +15,7 @@ class RolAprendiz
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->rol !== 1) {
+        if ($request->user()->rol != 1) {
 
             return redirect()->back();
         }

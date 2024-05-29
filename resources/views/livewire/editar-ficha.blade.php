@@ -1,9 +1,9 @@
 <div class="bg-gray-50 rounded-md shadow-md px-8 py-5">
-    <h1 class="font-bold text-center text-2xl text-gray-900">Crear ficha en formación</h1>
+    <h1 class="font-bold text-center text-2xl text-gray-900">Editar ficha en formación</h1>
     
     <div class="border-b border-gray-300 my-5"></div>
 
-    <form class="" wire:submit.prevent='crearFicha'>
+    <form class="" wire:submit.prevent='editarFicha'>
         {{--Ficha--}}
         <div>
             <x-input-label for="ficha" :value="__('Número de ficha')" class="ml-3"/>
@@ -91,7 +91,7 @@
         <div class="border-b border-gray-300 mt-5"></div>
 
         <x-primary-button class="w-full shadow-md mt-5">
-            Crear ficha
+            Editar ficha
         </x-primary-button>
     </form>
 </div>

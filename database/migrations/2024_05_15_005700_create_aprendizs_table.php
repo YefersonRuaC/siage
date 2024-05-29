@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('aprendizs', function (Blueprint $table) {
             // $table->id('documento');
             // $table->timestamps();
-            $table->bigInteger('documento')->primary();
+            $table->bigInteger('documento')->primary()->unsigned();
             $table->string('tipo_doc');
             $table->string('nombre');
             $table->string('apellidos');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('estado');
             $table->unsignedBigInteger('ficha_id')->nullable();
-            $table->foreign('ficha_id')->references('ficha')->on('fichas')->onDelete('cascade');
+            $table->foreign('ficha_id')->references('ficha')->on('fichas')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

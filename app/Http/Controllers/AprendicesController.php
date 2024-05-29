@@ -19,7 +19,7 @@ class AprendicesController extends Controller
         $fichas = Ficha::all();
         // dd($fichas);
 
-        return view('fichas.aprendices', [
+        return view('fichas.importar', [
             'fichas' => $fichas,
         ]);
     }
@@ -34,11 +34,8 @@ class AprendicesController extends Controller
         try {
             // Obtener la ficha seleccionada
             $ficha = Ficha::findOrFail($request->input('ficha'));
-
-            if($request->hasFile('documento')) {
-                //Obtenemos la ruta (path) del documento que el usuario subio al servidor
-                $path = $request->file('documento')->getRealPath();
     
+            if ($request->hasFile('documento')) {
                 // Verificar si el archivo ya ha sido importado
                 $importLog = ImportLog::where('file_name', $request->file('documento')->getClientOriginalName())->first();
     
@@ -46,29 +43,32 @@ class AprendicesController extends Controller
                     return back()->with('error', 'Este archivo ya ha sido importado anteriormente');
                 }
     
-                //Obtener la informacion que el usuario esta subiendo al importar el documento, toda es info se
-                //almacena en la vrble $datos
-                Excel::import(new AprendizImport($ficha), $path);
+                // Guardar el archivo subido en el almacenamiento
+                $path = $request->file('documento')->store('imports');
+    
+                // Obtener la ruta completa del archivo almacenado
+                $fullPath = storage_path('app/' . $path);
+    
+                // Importar el archivo sin especificar el tipo
+                Excel::import(new AprendizImport($ficha), $fullPath);
     
                 // Registrar el archivo importado en la tabla de registro
                 ImportLog::create([
                     'file_name' => $request->file('documento')->getClientOriginalName(),
-                    'file_path' => $request->file('documento')->getClientOriginalName(),
+                    'file_path' => $path,
                     'ficha_id' => $ficha->ficha,
                 ]);
     
                 session()->flash('mensaje', 'Datos importados correctamente');
-                
-                if(auth()->user()->rol === 3) {
+    
+                if (auth()->user()->rol == 3) {
                     return redirect()->route('admin.index');
                 }
-                if(auth()->user()->rol === 4) {
+                if (auth()->user()->rol == 4) {
                     return redirect()->route('apoyo.index');
                 }
             }
-
-        //Si hay errores (el arreglo no esta vacio), mostramos la Exception lanzada desde AprendizImport.php
-        //que contiene el los mensajes de error y los mostramos al admin
+    
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Administracion;
 use App\Http\Middleware\AuthRedirect;
 use App\Http\Middleware\RolAdmin;
 use App\Http\Middleware\RolApoyo;
@@ -76,5 +77,6 @@ class Kernel extends HttpKernel
         'rol.aprendiz' => RolAprendiz::class,
         'rol.apoyo' => RolApoyo::class,
         'rol.practica' => RolPractica::class,
+        'admins' => Administracion::class,
     ];
 }

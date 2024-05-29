@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('file_name');
             $table->string('file_path');
             $table->unsignedBigInteger('ficha_id')->nullable();
-            $table->foreign('ficha_id')->references('ficha')->on('fichas')->onDelete('cascade');
+            $table->foreign('ficha_id')->references('ficha')->on('fichas')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

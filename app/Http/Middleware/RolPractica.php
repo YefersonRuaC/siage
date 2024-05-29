@@ -15,7 +15,7 @@ class RolPractica
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->rol !== 5) {
+        if ($request->user()->rol != 5) {
 
             return redirect()->back();
         }

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RolInstructor
+class Administracion
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class RolInstructor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->rol != 2) {
+        if ($request->user()->rol != 3 && $request->user()->rol != 4) {
 
             return redirect()->back();
         }
