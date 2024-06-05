@@ -11,6 +11,9 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AprendicesController extends Controller
 {
+    public $ficha_id;
+    public $ficha;
+
     /**
      * Display a listing of the resource.
      */
@@ -23,6 +26,17 @@ class AprendicesController extends Controller
             'fichas' => $fichas,
         ]);
     }
+
+    public function actualizar($ficha_id)
+    {
+        $ficha = Ficha::findOrFail($ficha_id);
+        // dd($fichas);
+
+        return view('fichas.actualizar', [
+            'ficha' => $ficha,
+        ]);
+    }
+    
 
     public function importar(Request $request)
     {
@@ -37,11 +51,11 @@ class AprendicesController extends Controller
     
             if ($request->hasFile('documento')) {
                 // Verificar si el archivo ya ha sido importado
-                $importLog = ImportLog::where('file_name', $request->file('documento')->getClientOriginalName())->first();
+                // $importLog = ImportLog::where('file_name', $request->file('documento')->getClientOriginalName())->first();
     
-                if ($importLog) {
-                    return back()->with('error', 'Este archivo ya ha sido importado anteriormente');
-                }
+                // if ($importLog) {
+                //     return back()->with('error', 'Este archivo ya ha sido importado anteriormente');
+                // }
     
                 // Guardar el archivo subido en el almacenamiento
                 $path = $request->file('documento')->store('imports');
@@ -53,11 +67,11 @@ class AprendicesController extends Controller
                 Excel::import(new AprendizImport($ficha), $fullPath);
     
                 // Registrar el archivo importado en la tabla de registro
-                ImportLog::create([
-                    'file_name' => $request->file('documento')->getClientOriginalName(),
-                    'file_path' => $path,
-                    'ficha_id' => $ficha->ficha,
-                ]);
+                // ImportLog::create([
+                //     'file_name' => $request->file('documento')->getClientOriginalName(),
+                //     'file_path' => $path,
+                //     'ficha_id' => $ficha->ficha,
+                // ]);
     
                 session()->flash('mensaje', 'Datos importados correctamente');
     

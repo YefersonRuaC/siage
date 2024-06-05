@@ -66,9 +66,13 @@ class RegisteredUserController extends Controller
 
             return redirect(RouteServiceProvider::APOYO);
 
-        } elseif($request->user()->rol == 1) {
+        } elseif($request->user()->rol == 5) {
 
             return redirect(RouteServiceProvider::PRACTICA);
+
+        } elseif($request->user()->rol == 6) {
+
+            return redirect(RouteServiceProvider::INHABILITADO);
         }
 
         return redirect(RouteServiceProvider::HOME);

@@ -1,7 +1,7 @@
 <div>
-    <div>
-        <livewire:buscador-fichas />
-    </div>
+        
+    <livewire:buscador-fichas />
+
     <div class="flex flex-col">
         <div class="py-2 inline-block min-w-full px-2">
             <table class="min-w-full">
@@ -28,9 +28,25 @@
                     @forelse ($fichas as $ficha)
                     <tr class="bg-white border-b text-center">
                         <td class="px-2 md:px-4 py-4 border-r">
-                            <a  href="#"
-                                class="bg-gray-200 px-3 py-2 rounded-md hover:bg-gray-300 shadow-md transition font-bold"
-                            >{{ $ficha->ficha }}</a>
+                            <x-dropdown align="right" width="w-full md:w-52">
+                                <x-slot name="trigger">
+                                    <button class="bg-gray-200 px-3 flex py-2 rounded-md hover:bg-gray-300 shadow-md transition font-bold"
+                                    >
+                                    {{ $ficha->ficha }}
+                                    <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('admin.index')" class="font-bold flex items-center justify-center px-10 md:px-0">
+                                        {{ __('Ver aprendices') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('fichas.actualizar', $ficha->ficha)" class="font-bold flex items-center justify-center px-10 md:px-0">
+                                        {{ __('Actualizar ficha completa') }}
+                                    </x-dropdown-link>
+                                </x-slot>
+                            </x-dropdown>
                         </td>
                         <td class="px-3 py-4 border-r">
                             {{ $ficha->programa }}

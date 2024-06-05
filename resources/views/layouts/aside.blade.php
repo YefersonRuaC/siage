@@ -1,6 +1,6 @@
 <aside class="bg-gray-100">
     <div id="sidebar" class="sidebar transition-all duration-1000 ease-in-out md:h-full h-auto md:w-16 
-        overflow-auto md:overflow-hidden border-r w-full md:hover:w-72 hover:bg-white hover:shadow-lg">
+        overflow-auto overflow-x-hidden md:overflow-hidden border-r w-full md:hover:w-72 hover:bg-white hover:shadow-lg">
 
     @if (auth()->user()?->rol == 1)
         <div class="flex flex-col justify-between pt-4 md:w-max w-full">

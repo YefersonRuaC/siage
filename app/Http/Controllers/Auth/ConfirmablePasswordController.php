@@ -55,6 +55,10 @@ class ConfirmablePasswordController extends Controller
         } elseif($request->user()->rol == 5) {
 
             return redirect()->intended(RouteServiceProvider::PRACTICA);
+
+        } elseif($request->user()->rol == 6) {
+
+            return redirect()->intended(RouteServiceProvider::INHABILITADO);
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);

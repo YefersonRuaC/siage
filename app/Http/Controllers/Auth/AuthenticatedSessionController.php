@@ -51,6 +51,10 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('practica.index');
         }
 
+        if ($user->rol == 6) {
+            return redirect()->route('inhabilitado.index');
+        }
+
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);

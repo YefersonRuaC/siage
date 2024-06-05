@@ -1,10 +1,9 @@
-<div class="bg-gray-100 mx-2 p-2">
-    <h2 class="text-2xl md:text-4xl text-gray-600 text-center font-extrabold my-5">Buscar fichas de formación</h2>
+<div class="bg-gray-100 mx-2 py-6 md:py-4 px-6">
+    <h2 class="text-3xl text-center font-semibold pb-2">Filtrar y buscar fichas en formación</h2>
 
-    <div class="max-w-7xl mx-auto">
         <form wire:submit.prevent='leerDatosFicha'>
-            <div class="md:grid md:grid-cols-3 gap-5">
-                <div class="mb-5">
+            <div class="md:grid md:grid-cols-2 gap-3">
+                <div>
                     <x-input-label for="fichaBuscar" :value="__('Numero de la ficha')" class="ml-1"/>
                     <x-text-input 
                         id="fichaBuscar" 
@@ -16,7 +15,7 @@
                     />
                 </div>
 
-                <div class="mb-5">
+                <div>
                     <x-input-label for="programaBuscar" :value="__('Nombre de programa')" class="ml-1"/>
                     <x-text-input 
                         id="programaBuscar" 
@@ -28,7 +27,7 @@
                     />
                 </div>
 
-                <div class="mb-5">
+                <div>
                     <x-input-label for="jornadaBuscar" :value="__('Jornada')" class="ml-1"/>
                     <select 
                         wire:model="jornadaBuscar" 
@@ -43,7 +42,7 @@
                     </select>
                 </div>
 
-                <div class="mb-5">
+                <div>
                     <x-input-label for="trimestreBuscar" :value="__('Trimestre')" class="ml-1"/>
                     <select 
                         wire:model="trimestreBuscar" 
@@ -63,20 +62,19 @@
                 </div>
             </div>
 
-            <div class="flex justify-between">
+            <div class="flex justify-between mt-4">
                 <button 
                     type="button"
                     wire:click="limpiarCampos"
-                    class="bg-gray-500 hover:bg-gray-600 transition-colors text-white text-sm font-bold px-10 py-2 rounded cursor-pointer uppercase w-full md:w-auto"
+                    class="bg-gray-300 hover:bg-gray-200 transition text-sm font-bold px-10 py-2 rounded cursor-pointer uppercase w-auto"
                 >
                     Limpiar filtros
                 </button>
                 <input 
                     type="submit"
-                    class="bg-indigo-500 hover:bg-indigo-600 transition-colors text-white text-sm font-bold px-10 py-2 rounded cursor-pointer uppercase w-full md:w-auto"
+                    class="bg-lime-600 hover:bg-lime-700 transition text-white text-sm font-bold px-16 py-2 rounded cursor-pointer uppercase w-auto"
                     value="Listar"
                 />
             </div>
         </form>
-    </div>
 </div>

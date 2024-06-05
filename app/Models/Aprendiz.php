@@ -9,7 +9,7 @@ class Aprendiz extends Model
 {
     use HasFactory;
     //Al no usar id como PK, especificamos que la llave primaria es 'documento'
-    protected $primaryKey = 'documento';
+    // protected $primaryKey = 'documento';
 
     public $timestamps = false;
 

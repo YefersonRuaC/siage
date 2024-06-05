@@ -33,14 +33,14 @@
                 </div>
                 <div class="flex flex-col justify-center mr-8 md:mr-0">
                     <div class="border-b-4 border-blue-700">
-                        <h1 class="text-2xl md:text-3xl text-blue-900 mb-1">
+                        <h1 class="text-xl md:text-3xl text-blue-900 mb-1">
                             <span class="font-extrabold">S</span>istema <span class="font-extrabold">I</span>ntegrado de 
                             <span class="font-extrabold">A</span>dministración y <span class="font-extrabold">G</span>estión 
                             <span class="font-extrabold">E</span>ducativa
                         </h1>
                     </div>
                     <div class="mt-1">
-                        <h2 class="text-xl md:text-2xl text-lime-600 font-bold">Apoyo a la formación</h2>
+                        <h2 class="text-lg md:text-2xl text-lime-600 font-bold">Apoyo a la formación</h2>
                     </div>
                 </div>
 
@@ -103,43 +103,43 @@
                 :active="request()->routeIs('aprendiz.index')"
                 class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
             >
-                {{ __('Index aprendiz') }}
+                {{ __('Inicio aprendiz') }}
             </x-responsive-nav-link>
         @endif
         @if (auth()->user()?->rol == 2)
             <x-responsive-nav-link 
                 :href="route('instructor.index')" 
-                :active="request()->routeIs('aprendiz.index')"
+                :active="request()->routeIs('instructor.index')"
                 class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
             >
-                {{ __('Index instructor') }}
+                {{ __('Inicio instructor') }}
             </x-responsive-nav-link>
         @endif
         @if (auth()->user()?->rol == 3)
             <x-responsive-nav-link 
                 :href="route('admin.index')" 
-                :active="request()->routeIs('aprendiz.index')"
+                :active="request()->routeIs('admin.index')"
                 class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
             >
-                {{ __('Index admin') }}
+                {{ __('Inicio admin') }}
             </x-responsive-nav-link>
         @endif
         @if (auth()->user()?->rol == 4)
             <x-responsive-nav-link 
                 :href="route('apoyo.index')" 
-                :active="request()->routeIs('aprendiz.index')"
+                :active="request()->routeIs('apoyo.index')"
                 class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
             >
-                {{ __('Index apoyo') }}
+                {{ __('Inicio apoyo') }}
             </x-responsive-nav-link>
         @endif
         @if (auth()->user()?->rol == 5)
             <x-responsive-nav-link 
                 :href="route('practica.index')" 
-                :active="request()->routeIs('aprendiz.index')"
+                :active="request()->routeIs('practica.index')"
                 class="text-blue-700 border-blue-500 hover:border-blue-800 hover:bg-blue-100 hover:text-blue-800 font-bold"
             >
-                {{ __('Index practica') }}
+                {{ __('Inicio practica') }}
             </x-responsive-nav-link>
         @endif
         </div>

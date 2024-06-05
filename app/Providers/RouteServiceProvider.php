@@ -22,6 +22,7 @@ class RouteServiceProvider extends ServiceProvider
     public const INSTRUCTOR = '/instructor';
     public const APOYO = '/apoyo';
     public const PRACTICA = '/practica';
+    public const INHABILITADO = '/no-access';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

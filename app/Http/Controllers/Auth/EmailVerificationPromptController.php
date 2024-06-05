@@ -44,6 +44,12 @@ class EmailVerificationPromptController extends Controller
             return $request->user()->hasVerifiedEmail()
                         ? redirect()->intended(RouteServiceProvider::PRACTICA)
                         : view('auth.verify-email');
+
+        } elseif($request->user()->rol == 6) {
+
+            return $request->user()->hasVerifiedEmail()
+                        ? redirect()->intended(RouteServiceProvider::INHABILITADO)
+                        : view('auth.verify-email');
         }
 
         return $request->user()->hasVerifiedEmail()

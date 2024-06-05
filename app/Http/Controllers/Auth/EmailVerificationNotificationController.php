@@ -43,6 +43,11 @@ class EmailVerificationNotificationController extends Controller
             if ($request->user()->hasVerifiedEmail()) {
                 return redirect()->intended(RouteServiceProvider::PRACTICA);
             }
+        } elseif($request->user()->rol == 6) {
+    
+            if ($request->user()->hasVerifiedEmail()) {
+                return redirect()->intended(RouteServiceProvider::INHABILITADO);
+            }
         }
 
         $request->user()->sendEmailVerificationNotification();

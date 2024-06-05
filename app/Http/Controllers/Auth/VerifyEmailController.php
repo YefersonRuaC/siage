@@ -40,6 +40,11 @@ class VerifyEmailController extends Controller
             if ($request->user()->hasVerifiedEmail()) {
                 return redirect()->intended(RouteServiceProvider::PRACTICA.'?verified=1');
             }
+        } elseif($request->user()->rol == 6) {
+
+            if ($request->user()->hasVerifiedEmail()) {
+                return redirect()->intended(RouteServiceProvider::INHABILITADO.'?verified=1');
+            }
         }
 
         if ($request->user()->markEmailAsVerified()) {
@@ -64,7 +69,11 @@ class VerifyEmailController extends Controller
 
         } elseif($request->user()->rol == 5) {
 
-            return redirect()->intended(RouteServiceProvider::PRACTICA.'?verified=1');            
+            return redirect()->intended(RouteServiceProvider::PRACTICA.'?verified=1');   
+
+        } elseif($request->user()->rol == 6) {
+
+            return redirect()->intended(RouteServiceProvider::INHABILITADO.'?verified=1');            
         }
 
         return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');

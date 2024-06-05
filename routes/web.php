@@ -5,6 +5,7 @@ use App\Http\Controllers\ApoyoController;
 use App\Http\Controllers\AprendicesController;
 use App\Http\Controllers\AprendizController;
 use App\Http\Controllers\FichaController;
+use App\Http\Controllers\InhabilitadoController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PracticaController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,7 @@ Route::middleware(['auth', 'verified', 'auth.redirect', 'admins'])->group(functi
     //Importar aprendices
     Route::get('/importar', [AprendicesController::class, 'index'])->name('fichas.importar');
     Route::post('/importar/aprendices', [AprendicesController::class, 'importar']);
+    Route::get('/importar/{ficha}/actualizar', [AprendicesController::class, 'actualizar'])->name('fichas.actualizar');
 
     //Fichas
     Route::get('/fichas/create', [FichaController::class, 'create'])->name('fichas.create');
@@ -55,6 +57,9 @@ Route::get('/instructor', [InstructorController::class, 'index'])->middleware(['
 
 //-------------------------------------------PRACTICA----------------------------------------------
 Route::get('/practica', [PracticaController::class, 'index'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.practica'])->name('practica.index');
+
+//-------------------------------------------INHABILITADO----------------------------------------------
+Route::get('/no-access', InhabilitadoController::class)->middleware(['auth', 'verified', 'auth.redirect', 'rol.inhabilitado'])->name('inhabilitado.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

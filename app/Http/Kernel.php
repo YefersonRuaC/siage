@@ -7,6 +7,7 @@ use App\Http\Middleware\AuthRedirect;
 use App\Http\Middleware\RolAdmin;
 use App\Http\Middleware\RolApoyo;
 use App\Http\Middleware\RolAprendiz;
+use App\Http\Middleware\RolInhabilitado;
 use App\Http\Middleware\RolInstructor;
 use App\Http\Middleware\RolPractica;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -78,5 +79,6 @@ class Kernel extends HttpKernel
         'rol.apoyo' => RolApoyo::class,
         'rol.practica' => RolPractica::class,
         'admins' => Administracion::class,
+        'rol.inhabilitado' => RolInhabilitado::class,
     ];
 }

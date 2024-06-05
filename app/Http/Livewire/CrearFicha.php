@@ -41,7 +41,13 @@ class CrearFicha extends Component
 
         session()->flash('mensaje', 'Ficha creada correctamente');
         
-        return redirect()->route('fichas.aprendices');
+        // return redirect()->route('fichas.aprendices');
+        if (auth()->user()->rol == 3) {
+            return redirect()->route('admin.index');
+        }
+        if (auth()->user()->rol == 4) {
+            return redirect()->route('apoyo.index');
+        }
     }
 
     public function render()

@@ -31,8 +31,6 @@ class MostrarFichas extends Component
     }
     public function render()
     {
-        // $fichas = Ficha::orderBy('created_at', 'desc')->paginate(2);
-
         $fichas = Ficha::when($this->fichaBuscar, function($query) {
 
             $query->where('ficha', 'LIKE', "%" . $this->fichaBuscar . "%");
@@ -49,8 +47,7 @@ class MostrarFichas extends Component
 
             $query->where('trimestre', 'LIKE', "%" . $this->trimestreBuscar . "%");
         })
-        ->orderBy('created_at', 'desc')
-        ->paginate(2);
+        ->orderBy('created_at', 'desc')->paginate(2);
         
         return view('livewire.mostrar-fichas', [
             'fichas' => $fichas
