@@ -23,7 +23,7 @@
                     <td class="px-2 md:px-4 py-4 border-r border-gray-300">
                         <a  href="#"
                             class="inline-flex text-white bg-gray-700 px-3 py-2 rounded-md hover:bg-gray-600 shadow-md transition font-bold"
-                        >Ver programa</a>
+                        >Configurar programa</a>
                     </td>
                     <td class="px-3 py-4 border-r border-gray-300">
                         {{ $programa->nombre_corto }}

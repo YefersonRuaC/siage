@@ -248,6 +248,9 @@
                             <x-dropdown-link :href="route('fichas.importar')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Importar aprendices') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('fichas.actualizar')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Actualizar importaciones') }}
+                            </x-dropdown-link>
                         @endif
 
                         @if (auth()->user()?->rol == 4)
@@ -256,6 +259,55 @@
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('fichas.importar')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Importar aprendices') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('fichas.actualizar')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Actualizar importaciones') }}
+                            </x-dropdown-link>
+                        @endif
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+                
+                <div class="hover:bg-gray-100 min-w-max cursor-pointer ">
+                    <x-dropdown align="right" width="w-full md:w-52">
+                        <x-slot name="trigger">
+                            <button class="flex w-full items-center gap-4 px-3 py-2 text-md leading-4 font-medium rounded-md hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                @if (auth()->user()?->rol == 3)
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                                </svg>                                  
+                                    <div class="flex w-full items-center justify-between">  
+                                        <div class="text-xl">Aprendices</div>
+                                @endif
+                                @if (auth()->user()?->rol == 4)
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+                                </svg>                                    
+                                    <div class="flex w-full items-center justify-between">  
+                                        <div class="text-xl">Aprendices</div>
+                                @endif
+                                    <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+                        <x-slot name="content">
+                        @if (auth()->user()?->rol == 3)
+                            <x-dropdown-link :href="route('aprendices.create')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Crear aprendiz') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('aprendices.index')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Gestionar aprendices') }}
+                            </x-dropdown-link>
+                        @endif
+
+                        @if (auth()->user()?->rol == 4)
+                            <x-dropdown-link :href="route('aprendices.create')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Crear aprendiz') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('aprendices.index')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Gestionar aprendices') }}
                             </x-dropdown-link>
                         @endif
                         </x-slot>
@@ -354,8 +406,8 @@
                             <button class="flex w-full items-center gap-4 px-3 py-2 text-md leading-4 font-medium rounded-md hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                 @if (auth()->user()?->rol == 3)
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-11 h-auto">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                                </svg>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                </svg>                                  
                                     <div class="flex w-full items-center justify-between">  
                                         <div class="text-xl">Instructores</div>
                                 @endif
@@ -374,17 +426,17 @@
                         </x-slot>
                         <x-slot name="content">
                         @if (auth()->user()?->rol == 3)
-                            <x-dropdown-link :href="route('admin.index')" class="font-bold flex text-md items-center justify-center">
-                                {{ __('Crear instructores') }}
+                            <x-dropdown-link :href="route('instructores.create')" class="font-bold flex text-md items-center justify-center">
+                                {{ __('Crear instructor') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('admin.index')" class="font-bold flex text-md items-center justify-center">
+                            <x-dropdown-link :href="route('instructores.index')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Gestionar instructores') }}
                             </x-dropdown-link>
                         @endif
 
                         @if (auth()->user()?->rol == 4)
                             <x-dropdown-link :href="route('apoyo.index')" class="font-bold flex text-md items-center justify-center">
-                                {{ __('Crear instructores') }}
+                                {{ __('Crear instructor') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('admin.index')" class="font-bold flex text-md items-center justify-center">
                                 {{ __('Gestionar instructores') }}

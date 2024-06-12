@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PracticaController extends Controller
+class InstructoresController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('practica.index');
+        return view('instructores.index');
     }
 
     /**
@@ -19,7 +19,7 @@ class PracticaController extends Controller
      */
     public function create()
     {
-        //
+        return view('instructores.create');
     }
 
     /**

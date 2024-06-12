@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aprendiz;
 use App\Models\User;
 use App\Models\Ficha;
 use App\Models\ImportLog;
@@ -23,17 +24,18 @@ class AprendicesController extends Controller
         // dd($fichas);
 
         return view('fichas.importar', [
-            'fichas' => $fichas,
+            'fichas' => $fichas
         ]);
     }
 
-    public function actualizar($ficha_id)
+    public function actualizar()
     {
-        $ficha = Ficha::findOrFail($ficha_id);
+        $fichas = Ficha::all();
+        // $ficha = Ficha::findOrFail($ficha_id);
         // dd($fichas);
 
         return view('fichas.actualizar', [
-            'ficha' => $ficha,
+            'fichas' => $fichas
         ]);
     }
     
@@ -50,13 +52,6 @@ class AprendicesController extends Controller
             $ficha = Ficha::findOrFail($request->input('ficha'));
     
             if ($request->hasFile('documento')) {
-                // Verificar si el archivo ya ha sido importado
-                // $importLog = ImportLog::where('file_name', $request->file('documento')->getClientOriginalName())->first();
-    
-                // if ($importLog) {
-                //     return back()->with('error', 'Este archivo ya ha sido importado anteriormente');
-                // }
-    
                 // Guardar el archivo subido en el almacenamiento
                 $path = $request->file('documento')->store('imports');
     
@@ -65,13 +60,6 @@ class AprendicesController extends Controller
     
                 // Importar el archivo sin especificar el tipo
                 Excel::import(new AprendizImport($ficha), $fullPath);
-    
-                // Registrar el archivo importado en la tabla de registro
-                // ImportLog::create([
-                //     'file_name' => $request->file('documento')->getClientOriginalName(),
-                //     'file_path' => $path,
-                //     'ficha_id' => $ficha->ficha,
-                // ]);
     
                 session()->flash('mensaje', 'Datos importados correctamente');
     
@@ -91,11 +79,19 @@ class AprendicesController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     */
+    public function inicio()
+    {
+        return view('aprendices.index');
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('aprendices.create');
     }
 
     /**

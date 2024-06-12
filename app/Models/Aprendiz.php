@@ -14,7 +14,8 @@ class Aprendiz extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'documento',
+        // 'documento',
+        'id',
         'tipo_doc',
         'nombre',
         'apellidos',

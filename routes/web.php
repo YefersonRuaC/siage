@@ -1,15 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ApoyoController;
 use App\Http\Controllers\AprendicesController;
-use App\Http\Controllers\AprendizController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\InhabilitadoController;
-use App\Http\Controllers\InstructorController;
-use App\Http\Controllers\PracticaController;
+use App\Http\Controllers\InstructoresController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramaController;
+use App\Http\Controllers\RolesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,16 +25,16 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //-------------------------------------------ADMIN----------------------------------------------
-Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.admin'])->name('admin.index');
+Route::get('/dashboard', [RolesController::class, 'admin'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.admin'])->name('admin.index');
 
 //-------------------------------------------APOYO----------------------------------------------
-Route::get('/apoyo', [ApoyoController::class, 'index'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.apoyo'])->name('apoyo.index');
+Route::get('/apoyo', [RolesController::class, 'apoyo'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.apoyo'])->name('apoyo.index');
 
 Route::middleware(['auth', 'verified', 'auth.redirect', 'admins'])->group(function () {
     //Importar aprendices
     Route::get('/importar', [AprendicesController::class, 'index'])->name('fichas.importar');
     Route::post('/importar/aprendices', [AprendicesController::class, 'importar']);
-    Route::get('/importar/{ficha}/actualizar', [AprendicesController::class, 'actualizar'])->name('fichas.actualizar');
+    Route::get('/importar/actualizar', [AprendicesController::class, 'actualizar'])->name('fichas.actualizar');
 
     //Fichas
     Route::get('/fichas/create', [FichaController::class, 'create'])->name('fichas.create');
@@ -47,16 +44,24 @@ Route::middleware(['auth', 'verified', 'auth.redirect', 'admins'])->group(functi
     Route::get('/programas', [ProgramaController::class, 'index'])->name('programas.index');
     Route::get('/programas/create', [ProgramaController::class, 'create'])->name('programas.create');
     Route::get('/programas/{programa}/edit', [ProgramaController::class, 'edit'])->name('programas.edit');
+
+    //Aprendices
+    Route::get('/aprendices', [AprendicesController::class, 'inicio'])->name('aprendices.index');
+    Route::get('/aprendices/create', [AprendicesController::class, 'create'])->name('aprendices.create');
+
+    //Instructores
+    Route::get('/instructores', [InstructoresController::class, 'index'])->name('instructores.index');
+    Route::get('/instructores/create', [InstructoresController::class, 'create'])->name('instructores.create');
 });
 
 //-------------------------------------------APRENDIZ----------------------------------------------
-Route::get('/aprendiz', [AprendizController::class, 'index'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.aprendiz'])->name('aprendiz.index');
+Route::get('/aprendiz', [RolesController::class, 'aprendiz'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.aprendiz'])->name('aprendiz.index');
 
 //-------------------------------------------INSTRUCTOR----------------------------------------------
-Route::get('/instructor', [InstructorController::class, 'index'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.instructor'])->name('instructor.index');
+Route::get('/instructor', [RolesController::class, 'instructor'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.instructor'])->name('instructor.index');
 
 //-------------------------------------------PRACTICA----------------------------------------------
-Route::get('/practica', [PracticaController::class, 'index'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.practica'])->name('practica.index');
+Route::get('/practica', [RolesController::class, 'practica'])->middleware(['auth', 'verified', 'auth.redirect', 'rol.practica'])->name('practica.index');
 
 //-------------------------------------------INHABILITADO----------------------------------------------
 Route::get('/no-access', InhabilitadoController::class)->middleware(['auth', 'verified', 'auth.redirect', 'rol.inhabilitado'])->name('inhabilitado.index');

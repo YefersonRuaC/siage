@@ -23,10 +23,6 @@ class AprendizImport implements ToCollection
     public function collection(Collection $rows)
     {
         $errores = [];
-        
-        // if (Aprendiz::where('ficha_id', $this->ficha->ficha)->exists()) {
-        //     $errores[] = "Los aprendices de la ficha '{$this->ficha->ficha}' ya estan registrados en el sistema.";
-        // }
 
         foreach ($rows as $index => $row) {
 
@@ -34,36 +30,16 @@ class AprendizImport implements ToCollection
                 continue;
             }
 
-            //Si se sube otro archivo excel con un nombre distinto y se encuentra un documento o email que
-            //ya existe en la BD, mostrar la alerta
-            // if (Aprendiz::where('documento', $row[1])->orWhere('email', $row[5])->exists()) {
-            //     $errores[] = "El usuario con documento '{$row[1]}' o correo electronico '{$row[5]}' ya esta registrado en el sistema.";
-            //     continue; // Saltar este registro y pasar al siguiente
-            // }
-
-            // Aprendiz::create([
-            //     'tipo_doc' => strtolower($row[0]),
-            //     'documento' => $row[1],
-            //     'nombre' => strtolower($row[2]),
-            //     'apellidos' => strtolower($row[3]),
-            //     'celular' => $row[4],
-            //     'email' => strtolower($row[5]),
-            //     'estado' => strtolower($row[6]),
-            //     'ficha_id' => $this->ficha->ficha,
-            // ]);
-
-            // Buscar o crear aprendiz
-            // $aprendiz = Aprendiz::where('documento', strtolower($row[1]))->first();
-
-            //Identificamos el aprendiz por medio de su documento
-            //Si el aprendiz existe en la ficha asociada, lo actualizamos 
             if (strtolower($row[6]) === 'trasladado') {
                 continue;
 
-            } elseif ($aprendiz = Aprendiz::where('documento', strtolower($row[1]))->first()) {
+            //Identificamos el aprendiz por medio de su documento
+            } elseif ($aprendiz = Aprendiz::where('id', strtolower($row[1]))->first()) {
+                
+                //Si el aprendiz existe en la ficha asociada, lo actualizamos 
                 $aprendiz->update([
                     'tipo_doc' => strtolower($row[0]),
-                    'documento' => $row[1],
+                    'id' => $row[1],
                     'nombre' => strtolower($row[2]),
                     'apellidos' => strtolower($row[3]),
                     'celular' => $row[4],
@@ -75,7 +51,7 @@ class AprendizImport implements ToCollection
             } else {
                 Aprendiz::create([
                     'tipo_doc' => strtolower($row[0]),
-                    'documento' => $row[1],
+                    'id' => $row[1],
                     'nombre' => strtolower($row[2]),
                     'apellidos' => strtolower($row[3]),
                     'celular' => $row[4],
@@ -85,18 +61,6 @@ class AprendizImport implements ToCollection
                 ]);
             }
 
-            // Aprendiz::updateOrCreate(
-            //     ['documento' => $row[1]], // Condición para encontrar el aprendiz
-            //     [
-            //         'tipo_doc' => strtolower($row[0]),
-            //         'nombre' => strtolower($row[2]),
-            //         'apellidos' => strtolower($row[3]),
-            //         'celular' => $row[4],
-            //         'email' => strtolower($row[5]),
-            //         'estado' => strtolower($row[6]),
-            //         'ficha_id' => $this->ficha->ficha,
-            //     ]
-            // );
             
             //Solo crearemos cuentas (ACTIVAS, rol=1) si el aprendiz esta 'en formacion'
             if (strtolower($row[6]) === 'en formacion' || strtolower($row[6]) === 'condicionado') {
