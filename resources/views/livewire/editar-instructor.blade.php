@@ -1,9 +1,9 @@
 <div class="bg-gray-50 rounded-md shadow-md px-4 md:px-8 py-5">
-    <h1 class="font-bold text-center text-2xl text-gray-900">Crear instructor</h1>
+    <h1 class="font-bold text-center text-2xl text-gray-900">Editar instructor</h1>
     
     <div class="border-b border-gray-300 my-5"></div>
 
-    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1" wire:submit.prevent='crearInstructor'>
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1" wire:submit.prevent='editarInstructor'>
         
         {{-- tipo_doc --}}
         <div>
@@ -146,26 +146,6 @@
             @enderror
         </div>
 
-        {{-- estado cuenta (rol) --}}
-        {{-- <div class="md:col-span-2">
-            <x-input-label for="rol" :value="__('Estado de la cuenta del instructor')" class="ml-3"/>
-            <select 
-                wire:model="rol" 
-                id="rol" 
-                class="border-gray-300 my-1 focus:border-blue-500 focus:ring-blue-500 rounded-md 
-                shadow-sm w-full"
-            >
-                <option value="" selected disabled>--Seleccione--</option>
-                <option value="2">ACTIVAR CUENTA</option>
-                <option value="6">INHABILITAR CUENTA</option>
-            </select>
-
-            @error('rol')
-                <livewire:mostrar-alerta :message="$message" />
-            @enderror
-        </div> --}}
-
-
         <div class="w-full place-items-center">
             <x-input-label for="rol" :value="__('Estado de la cuenta del instructor')" class="ml-3"/>
             <div class="grid grid-cols-2 gap-2 rounded-md bg-white p-1 border">
@@ -209,8 +189,8 @@
         
         <div class="border-b border-gray-300 mt-5 md:col-span-2"></div>
 
-        <x-primary-button class="w-full shadow-md mt-5 bg-green-600 hover:bg-green-700 md:col-span-2">
-            Crear instructor
+        <x-primary-button class="w-full shadow-md mt-5 bg-blue-600 hover:bg-blue-700 md:col-span-2">
+            Editar instructor
         </x-primary-button>
     </form>
 </div>

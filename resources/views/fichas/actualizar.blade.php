@@ -12,8 +12,8 @@
         <livewire:mostrar-exito />              
     @endif
 
-    <div class="px-5 md:px-32 py-2">
-        <div class="bg-gray-50 rounded-md shadow-md px-8 py-5">
+    <div class="px-0 md:px-32 py-2">
+        <div class="bg-gray-50 rounded-md shadow-md px-4 md:px-8 py-5">
             <h1 class="font-bold text-center text-2xl text-gray-900">Actualizar importación de aprendices</h1>
             
             <div class="border-b border-gray-300 my-5"></div>

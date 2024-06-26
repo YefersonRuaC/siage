@@ -69,14 +69,9 @@
     <footer class="px-2 mb-4 mx-auto">
         <hr class="my-4 border-gray-200"/>
     
-        <div class="flex gap-3 md:gap-0 flex-col items-center md:flex-row md:justify-between">
-            <p class="text-md text-gray-500">Centro de Tecnología de la Manufactura Avanzada</p>
-    
-            {{-- <a href="/" class="flex justify-center">
-                <img src="{{ asset('images/logo2.png') }}" alt="" class="h-16">
-            </a> --}}
-    
-            <p class="text-md text-gray-500">© Copyright 2024. Todos los derechos reservados.</p>
+        <div class="flex gap-3 md:gap-0 flex-col items-center md:flex-row justify-center md:justify-between">
+            <p class="text-md text-gray-500 text-center">Centro de Tecnología de la Manufactura Avanzada</p>
+            <p class="text-md text-gray-500 text-center">© Copyright 2024. Todos los derechos reservados.</p>
         </div>
     </footer>
 </div>

@@ -17,7 +17,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="px-6 py-3">
+    <body class="px-1 md:px-6 py-3">
         {{ $slot }}
     </body>
 </html>

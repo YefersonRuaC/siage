@@ -3,7 +3,7 @@
     
     <div class="border-b border-gray-300 my-5"></div>
 
-    <form class="" wire:submit.prevent='editarFicha'>
+    <form wire:submit.prevent='editarFicha'>
         {{--Ficha--}}
         <div>
             <x-input-label for="ficha" :value="__('Número de ficha')" class="ml-3"/>

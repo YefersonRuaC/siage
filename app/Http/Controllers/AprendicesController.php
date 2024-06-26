@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Aprendiz;
-use App\Models\User;
 use App\Models\Ficha;
-use App\Models\ImportLog;
 use Illuminate\Http\Request;
 use App\Imports\AprendizImport;
+use App\Models\Aprendiz;
+use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AprendicesController extends Controller
@@ -95,6 +94,16 @@ class AprendicesController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Aprendiz $aprendiz, User $user)
+    {
+        return view('aprendices.edit', [
+            'aprendiz' => $aprendiz
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -106,14 +115,6 @@ class AprendicesController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }

@@ -48,10 +48,12 @@ Route::middleware(['auth', 'verified', 'auth.redirect', 'admins'])->group(functi
     //Aprendices
     Route::get('/aprendices', [AprendicesController::class, 'inicio'])->name('aprendices.index');
     Route::get('/aprendices/create', [AprendicesController::class, 'create'])->name('aprendices.create');
+    Route::get('/aprendices/{aprendiz}/edit/', [AprendicesController::class, 'edit'])->name('aprendices.edit');
 
     //Instructores
     Route::get('/instructores', [InstructoresController::class, 'index'])->name('instructores.index');
     Route::get('/instructores/create', [InstructoresController::class, 'create'])->name('instructores.create');
+    Route::get('/instructores/{instructor}/edit', [InstructoresController::class, 'edit'])->name('instructores.edit');
 });
 
 //-------------------------------------------APRENDIZ----------------------------------------------

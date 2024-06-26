@@ -1,4 +1,4 @@
-<div class="bg-gray-50 rounded-md shadow-md px-8 py-5">
+<div class="bg-gray-50 rounded-md shadow-md px-4 md:px-8 py-5">
     <h1 class="font-bold text-center text-2xl text-gray-900">Crear Programa de formación</h1>
     
     <div class="border-b border-gray-300 my-5"></div>

@@ -40,7 +40,7 @@ class AprendizImport implements ToCollection
                 $aprendiz->update([
                     'tipo_doc' => strtolower($row[0]),
                     'id' => $row[1],
-                    'nombre' => strtolower($row[2]),
+                    'name' => strtolower($row[2]),
                     'apellidos' => strtolower($row[3]),
                     'celular' => $row[4],
                     'email' => strtolower($row[5]),
@@ -52,7 +52,7 @@ class AprendizImport implements ToCollection
                 Aprendiz::create([
                     'tipo_doc' => strtolower($row[0]),
                     'id' => $row[1],
-                    'nombre' => strtolower($row[2]),
+                    'name' => strtolower($row[2]),
                     'apellidos' => strtolower($row[3]),
                     'celular' => $row[4],
                     'email' => strtolower($row[5]),

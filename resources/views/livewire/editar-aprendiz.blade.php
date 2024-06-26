@@ -1,12 +1,12 @@
 <div class="bg-gray-50 rounded-md shadow-md px-4 md:px-8 py-5">
-    <h1 class="font-bold text-center text-2xl text-gray-900">Crear instructor</h1>
+    <h1 class="font-bold text-center text-2xl text-gray-900">Editar aprendiz</h1>
     
     <div class="border-b border-gray-300 my-5"></div>
 
-    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1" wire:submit.prevent='crearInstructor'>
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1" wire:submit.prevent='editarAprendiz'>
         
         {{-- tipo_doc --}}
-        <div>
+        <div class="">
             <x-input-label for="tipo_doc" :value="__('Tipo de documento')" class="ml-3"/>
             <select 
                 wire:model="tipo_doc" 
@@ -34,8 +34,8 @@
                 type="number"
                 wire:model="documento"
                 :value="old('documento')"
-                placeholder="Ingresé el numero de documento del instructor"
-            />
+                placeholder="Ingresé el numero de documento"
+            />{{--En livewire en ves de poner name="" ponemos wire:model="" para que se comunique con el backend--}}
 
             @error('documento')
                 <livewire:mostrar-alerta :message="$message" />
@@ -51,7 +51,7 @@
                 type="text"
                 wire:model="name"
                 :value="old('name')"
-                placeholder="Ingresé el nombre completo del instructor"
+                placeholder="Ingresé el nombre completo del aprendiz"
             />
 
             @error('name')
@@ -68,7 +68,7 @@
                 type="text"
                 wire:model="apellidos"
                 :value="old('apellidos')"
-                placeholder="Ingresé los apellidos del instructor"
+                placeholder="Ingresé los apellidos del aprendiz"
             />
 
             @error('apellidos')
@@ -85,7 +85,7 @@
                 type="email"
                 wire:model="email"
                 :value="old('email')"
-                placeholder="Ingresé el correo del instructor"
+                placeholder="Ingresé el correo del aprendiz"
             />
 
             @error('email')
@@ -102,7 +102,7 @@
                 type="number"
                 wire:model="celular"
                 :value="old('celular')"
-                placeholder="Ingresé el numero de contacto del instructor"
+                placeholder="Ingresé el numero de contacto"
             />
 
             @error('celular')
@@ -110,45 +110,32 @@
             @enderror
         </div>
 
-        {{--direccion--}}
-        <div class="md:col-span-2">
-            <x-input-label for="direccion" :value="__('Direccion de la vivienda')" class="ml-3"/>
-            <x-text-input 
-                id="direccion" 
-                class="block my-1 w-full"
-                type="text"
-                wire:model="direccion"
-                :value="old('direccion')"
-                placeholder="Ingresé la direccion del instructor"
-            />
-
-            @error('direccion')
-                <livewire:mostrar-alerta :message="$message" />
-            @enderror
-        </div>
-
-        {{-- tipo --}}
-        <div>
-            <x-input-label for="tipo" :value="__('Tipo de instructor')" class="ml-3"/>
+        {{-- estado --}}
+        <div class="">
+            <x-input-label for="estado" :value="__('Estado actual del aprendiz')" class="ml-3"/>
             <select 
-                wire:model="tipo" 
-                id="tipo" 
+                wire:model="estado" 
+                id="estado" 
                 class="border-gray-300 my-1 focus:border-blue-500 focus:ring-blue-500 rounded-md 
                 shadow-sm w-full"
             >
                 <option value="" selected disabled>--Seleccione--</option>
-                <option value="funcionario">FUNCIONARIO</option>
-                <option value="contratista">CONTRATISTA</option>
+                <option value="en formacion">EN FORMACION</option>
+                <option value="trasladado">TRASLADADO</option>
+                <option value="condicionado">CONDICIONADO</option>
+                <option value="aplazado">APLAZADO</option>
+                <option value="retiro voluntario">RETIRO VOLUNTARIO</option>
+                <option value="cancelado">CANCELADO</option>
             </select>
 
-            @error('tipo')
+            @error('estado')
                 <livewire:mostrar-alerta :message="$message" />
             @enderror
         </div>
 
         {{-- estado cuenta (rol) --}}
-        {{-- <div class="md:col-span-2">
-            <x-input-label for="rol" :value="__('Estado de la cuenta del instructor')" class="ml-3"/>
+        {{-- <div>
+            <x-input-label for="rol" :value="__('Estado de la cuenta del aprendiz')" class="ml-3"/>
             <select 
                 wire:model="rol" 
                 id="rol" 
@@ -156,7 +143,7 @@
                 shadow-sm w-full"
             >
                 <option value="" selected disabled>--Seleccione--</option>
-                <option value="2">ACTIVAR CUENTA</option>
+                <option value="1">ACTIVAR CUENTA</option>
                 <option value="6">INHABILITAR CUENTA</option>
             </select>
 
@@ -165,15 +152,14 @@
             @enderror
         </div> --}}
 
-
         <div class="w-full place-items-center">
-            <x-input-label for="rol" :value="__('Estado de la cuenta del instructor')" class="ml-3"/>
+            <x-input-label for="rol" :value="__('Estado de la cuenta del aprendiz')" class="ml-3"/>
             <div class="grid grid-cols-2 gap-2 rounded-md bg-white p-1 border">
                 <div>
                     <input 
                         type="radio"
                         id="activar" 
-                        value="2" 
+                        value="1" 
                         wire:model="rol"
                         class="peer hidden"
                     />
@@ -206,11 +192,47 @@
                 <livewire:mostrar-alerta :message="$message" />
             @enderror
         </div>
+
+        <div class="w-full md:col-span-2">
+            <x-input-label for="ficha" :value="__('Ficha asociada')" class="mb-1 ml-3" />
+            <select 
+                wire:model="ficha" 
+                id="ficha" 
+                class="select2 w-3/4 border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-md"
+                wire:ignore
+            >
+            <option value="" selected disabled>--Seleccione--</option>
+            @foreach ($fichas as $ficha)
+                <option value="{{ $ficha->ficha }}">{{ $ficha->ficha }} | {{ $ficha->programa }}</option>
+            @endforeach
+    
+            </select>
+            <x-input-error :messages="$errors->get('ficha')" class="mt-2" />
+        </div>
         
         <div class="border-b border-gray-300 mt-5 md:col-span-2"></div>
 
-        <x-primary-button class="w-full shadow-md mt-5 bg-green-600 hover:bg-green-700 md:col-span-2">
-            Crear instructor
+        <x-primary-button class="w-full shadow-md mt-5 bg-blue-600 hover:bg-blue-700 md:col-span-2">
+            Editar aprendiz
         </x-primary-button>
     </form>
 </div>
+<script>
+    document.addEventListener('livewire:load', () => {
+        inicializarSelect2()
+
+        Livewire.hook('message.processed', (message, component) => {
+                inicializarSelect2();
+            })
+    });
+
+    function inicializarSelect2() {
+        $('.select2').select2({
+            placeholder: "--Seleccione--",
+            allowClear: true
+
+        }).on('change', (e) => {
+            @this.set('ficha', e.target.value);
+        });
+    }
+</script>

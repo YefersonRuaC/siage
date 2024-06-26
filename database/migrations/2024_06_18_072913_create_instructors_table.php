@@ -11,20 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aprendizs', function (Blueprint $table) {
+        Schema::create('instructors', function (Blueprint $table) {
             // $table->id();
             // $table->timestamps();
             $table->bigInteger('id')->primary();
-            // $table->string('documento');
             $table->string('tipo_doc');
             $table->string('name');
             $table->string('apellidos');
-            $table->string('celular');
-            // $table->string('email')->unique();
             $table->string('email');
-            $table->string('estado');
-            $table->unsignedBigInteger('ficha_id')->nullable();
-            $table->foreign('ficha_id')->references('ficha')->on('fichas')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('celular');
+            $table->string('direccion');
+            $table->string('tipo');
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aprendizs');
+        Schema::dropIfExists('instructors');
     }
 };

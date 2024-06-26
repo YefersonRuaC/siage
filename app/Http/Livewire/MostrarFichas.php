@@ -29,6 +29,7 @@ class MostrarFichas extends Component
     {
         $ficha->delete();
     }
+    
     public function render()
     {
         $fichas = Ficha::when($this->fichaBuscar, function($query) {

@@ -17,7 +17,7 @@ class Aprendiz extends Model
         // 'documento',
         'id',
         'tipo_doc',
-        'nombre',
+        'name',
         'apellidos',
         'celular',
         'email',

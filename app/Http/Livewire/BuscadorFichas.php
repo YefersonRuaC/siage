@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Programa;
 use Livewire\Component;
 
 class BuscadorFichas extends Component
