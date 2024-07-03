@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AprendicesController;
+use App\Http\Controllers\CrapController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\InhabilitadoController;
 use App\Http\Controllers\InstructoresController;
@@ -54,6 +55,9 @@ Route::middleware(['auth', 'verified', 'auth.redirect', 'admins'])->group(functi
     Route::get('/instructores', [InstructoresController::class, 'index'])->name('instructores.index');
     Route::get('/instructores/create', [InstructoresController::class, 'create'])->name('instructores.create');
     Route::get('/instructores/{instructor}/edit', [InstructoresController::class, 'edit'])->name('instructores.edit');
+
+    //CRaps
+    Route::get('/craps/{programa}', [CrapController::class, 'craps'])->name('craps.craps');
 });
 
 //-------------------------------------------APRENDIZ----------------------------------------------

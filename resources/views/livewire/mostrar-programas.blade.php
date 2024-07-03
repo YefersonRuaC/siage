@@ -6,7 +6,7 @@
                 <thead class="bg-gray-800 hover:bg-gray-700 border-b border-gray-400 transition">
                     <tr>
                         <th scope="col" class="text-white font-bold py-4 text-center border-r border-gray-400">
-                            Programa
+                            Codigo
                         </th>
                         <th scope="col" class="text-white font-bold px-2 md:px-6 whitespace-nowrap py-4 text-center border-r border-gray-400">
                             Nombre corto
@@ -21,11 +21,11 @@
                 </thead>
                 <tbody>
                     @forelse ($programas as $programa)
-                    <tr class="bg-gray-100 border-gray-300 text-center @if ($loop->last) @else border-b @endif">
+                    <tr class="bg-gray-100 border-gray-300 text-center border-b last-of-type:border-none">
                         <td class="px-2 md:px-4 py-4 border-r border-gray-300">
                             <a  href="#"
                                 class="inline-flex text-white bg-gray-700 px-3 py-2 rounded-md hover:bg-gray-600 shadow-md transition font-bold"
-                            >Programa</a>
+                            >{{ $programa->codigo }}</a>
                         </td>
                         <td class="px-2 py-4 border-r border-gray-300">
                             {{ $programa->nombre_corto }}
@@ -35,13 +35,17 @@
                         </td>
                         <td class="px-2 md:px-4 py-4">
                             <div class="flex flex-col md:flex-row gap-5 justify-center">
-                                <a  href="{{ route('programas.edit', $programa->programa) }}"
+                                <a  href="{{ route('craps.craps', $programa->codigo) }}"
+                                    class="bg-green-500 px-3 py-2 rounded-md hover:bg-green-600 text-white font-bold
+                                    shadow-md transition-all whitespace-nowrap uppercase"
+                                >C-rap</a>
+                                <a  href="{{ route('programas.edit', $programa->codigo) }}"
                                     class="bg-blue-600 px-3 py-2 rounded-md hover:bg-blue-700 text-white font-bold
-                                    shadow-md transition"
+                                    shadow-md transition-all"
                                 >Editar</a>
-                                <a  wire:click="$emit('mostrarAlerta', {{ $programa->programa }})"
+                                <a  wire:click="$emit('mostrarAlerta', '{{ $programa->codigo }}')"
                                     class="bg-red-600 px-3 py-2 rounded-md hover:bg-red-700 text-white font-bold
-                                    shadow-md transition cursor-pointer"    
+                                    shadow-md transition-all cursor-pointer"
                                 >Eliminar</a>
                             </div>
                         </td>
@@ -79,7 +83,7 @@
             }).then((result) => {
             if (result.isConfirmed) {
                 //Eliminar la vacante
-                Livewire.emit('eliminarPrograma', programaId)
+                Livewire.emit('eliminarPrograma', programaId);
 
                 //Mensaje de confirmacion
                 Swal.fire(

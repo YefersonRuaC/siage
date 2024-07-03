@@ -8,13 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Programa extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'programa';
+    protected $primaryKey = 'codigo';
+    public $incrementing = false; //Desactivar autoIncrement
+    protected $keyType = 'string';
 
     // public $timestamps = false;
 
     protected $fillable = [
-        'programa',
+        'codigo',
         'nombre_corto',
         'nombre_completo',
     ];
+
+    public function competencias()
+    {
+        return $this->hasMany(Competencia::class);
+    }
 }

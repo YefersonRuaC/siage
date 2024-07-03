@@ -13,9 +13,10 @@ class MostrarProgramas extends Component
     {
         $programa->delete();
     }
+    
     public function render()
     {
-        $programas = Programa::orderBy('created_at', 'desc')->paginate(2);
+        $programas = Programa::orderBy('created_at', 'desc')->paginate(3);
         // dd($programas);
 
         return view('livewire.mostrar-programas', [

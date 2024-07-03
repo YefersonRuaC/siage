@@ -38,7 +38,7 @@
                     </thead>
                     <tbody>
                         @forelse ($instructors as $instructor)
-                            <tr class="bg-gray-50 text-center @if ($loop->last) @else border-b @endif border-blue-200">
+                            <tr class="bg-gray-50 text-center border-b last-of-type:border-none border-blue-200">
                                 <td class="text-sm px-2 py-1 border-r border-blue-200 uppercase">
                                     {{ $instructor->tipo_doc }}
                                 </td>

@@ -3,7 +3,24 @@
     
     <div class="border-b border-gray-300 my-5"></div>
 
-    <form class="" wire:submit.prevent='crearPrograma'>
+    <form wire:submit.prevent='crearPrograma'>
+        {{--Codigo--}}
+        <div>
+            <x-input-label for="codigo" :value="__('Codigo del programa')" class="ml-3"/>
+            <x-text-input 
+                id="codigo" 
+                class="block mt-1 w-full"
+                type="text"
+                wire:model="codigo"
+                :value="old('codigo')"
+                placeholder="Ingresé el codigo del programa"
+            />{{--En livewire en ves de poner name="" ponemos wire:model="" para que se comunique con el backend--}}
+
+            @error('codigo')
+                <livewire:mostrar-alerta :message="$message" />
+            @enderror
+        </div>
+
         {{--Nombre corto--}}
         <div>
             <x-input-label for="nombre_corto" :value="__('Nombre corto')" class="ml-3"/>
@@ -14,7 +31,7 @@
                 wire:model="nombre_corto"
                 :value="old('nombre_corto')"
                 placeholder="Ingresé las siglas del programa"
-            />{{--En livewire en ves de poner name="" ponemos wire:model="" para que se comunique con el backend--}}
+            />
 
             @error('nombre_corto')
                 <livewire:mostrar-alerta :message="$message" />
@@ -31,7 +48,7 @@
                 wire:model="nombre_completo"
                 :value="old('nombre_completo')"
                 placeholder="Ingresé el nombre completo del programa de formación"
-            />{{--En livewire en ves de poner name="" ponemos wire:model="" para que se comunique con el backend--}}
+            />
 
             @error('nombre_completo')
                 <livewire:mostrar-alerta :message="$message" />

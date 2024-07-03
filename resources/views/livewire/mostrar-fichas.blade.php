@@ -27,7 +27,7 @@
                     </thead>
                     <tbody>
                         @forelse ($fichas as $ficha)
-                        <tr class="bg-white text-center @if ($loop->last) @else border-b @endif">
+                        <tr class="bg-white text-center border-b last-of-type:border-none">
                             <td class="px-2 md:px-4 py-4 border-r">
                                 <p class="font-bold bg-gray-100 p-2 rounded-md">{{ $ficha->ficha }}</p>
                             </td>

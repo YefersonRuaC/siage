@@ -4,6 +4,23 @@
     <div class="border-b border-gray-300 my-5"></div>
 
     <form class="" wire:submit.prevent='editarPrograma'>
+        {{--Codigo--}}
+        <div>
+            <x-input-label for="codigo" :value="__('Codigo del programa')" class="ml-3"/>
+            <x-text-input 
+                id="codigo" 
+                class="block mt-1 w-full"
+                type="text"
+                wire:model="codigo"
+                :value="old('codigo')"
+                placeholder="Ingresé el codigo del programa"
+            />{{--En livewire en ves de poner name="" ponemos wire:model="" para que se comunique con el backend--}}
+
+            @error('codigo')
+                <livewire:mostrar-alerta :message="$message" />
+            @enderror
+        </div>
+
         {{--Nombre corto--}}
         <div>
             <x-input-label for="nombre_corto" :value="__('Nombre corto')" class="ml-3"/>
