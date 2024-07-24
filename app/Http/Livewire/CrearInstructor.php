@@ -73,6 +73,6 @@ class CrearInstructor extends Component
 
     public function render()
     {
-        return view('livewire.crear-instructor');
+        return view('livewire.instructores.crear-instructor');
     }
 }

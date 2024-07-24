@@ -105,7 +105,7 @@ class EditarAprendiz extends Component
     {
         $fichas = Ficha::all();
         
-        return view('livewire.editar-aprendiz', [
+        return view('livewire.aprendices.editar-aprendiz', [
             'fichas' => $fichas    
         ]);
     }

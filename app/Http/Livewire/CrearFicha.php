@@ -55,7 +55,7 @@ class CrearFicha extends Component
         $programas = Programa::all();
         // dd($programas);
 
-        return view('livewire.crear-ficha', [
+        return view('livewire.fichas.crear-ficha', [
             'programas' => $programas,
         ]);
     }

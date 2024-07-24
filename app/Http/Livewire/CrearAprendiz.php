@@ -91,7 +91,7 @@ class CrearAprendiz extends Component
     {
         $fichas = Ficha::all();
 
-        return view('livewire.crear-aprendiz', [
+        return view('livewire.aprendices.crear-aprendiz', [
             'fichas' => $fichas
         ]);
     }

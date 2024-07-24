@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('programas', function (Blueprint $table) {
-            // $table->id('programa');
-            // $table->integer('codigo')->primary()->unsigned();
-            $table->string('codigo')->primary();
+        Schema::create('actividads', function (Blueprint $table) {
+            $table->id();
+            // $table->timestamps();
             $table->string('nombre_corto');
             $table->string('nombre_completo');
-            $table->integer('trimestres');
-            $table->timestamps();
+            $table->integer('trimestre');
+            $table->foreignId('competencia_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('programas');
+        Schema::dropIfExists('actividads');
     }
 };

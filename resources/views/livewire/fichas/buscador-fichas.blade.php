@@ -1,4 +1,4 @@
-<div class="bg-gray-100 mx-0 md:mx-1 py-6 md:py-4 px-6">
+<div class="bg-gray-100 py-4 px-4">
     <h2 class="text-3xl text-center font-semibold pb-2">Filtrar y buscar fichas en formación</h2>
 
     <form wire:submit.prevent='leerDatosFicha'>

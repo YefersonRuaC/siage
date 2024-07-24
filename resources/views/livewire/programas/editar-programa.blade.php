@@ -13,7 +13,7 @@
                 type="text"
                 wire:model="codigo"
                 :value="old('codigo')"
-                placeholder="Ingresé el codigo del programa"
+                placeholder="Ingresé el codigo del programa de formación"
             />{{--En livewire en ves de poner name="" ponemos wire:model="" para que se comunique con el backend--}}
 
             @error('codigo')
@@ -30,7 +30,7 @@
                 type="text"
                 wire:model="nombre_corto"
                 :value="old('nombre_corto')"
-                placeholder="Ingresé las siglas del programa"
+                placeholder="Ingresé las siglas del programa de formación"
             />{{--En livewire en ves de poner name="" ponemos wire:model="" para que se comunique con el backend--}}
 
             @error('nombre_corto')
@@ -51,6 +51,23 @@
             />{{--En livewire en ves de poner name="" ponemos wire:model="" para que se comunique con el backend--}}
 
             @error('nombre_completo')
+                <livewire:mostrar-alerta :message="$message" />
+            @enderror
+        </div>
+
+        {{--Trimestres--}}
+        <div>
+            <x-input-label for="trimestres" :value="__('Cantidad de trimestres')" class="ml-3 mt-1"/>
+            <x-text-input 
+                id="trimestres" 
+                class="block mt-1 w-full"
+                type="number"
+                wire:model="trimestres"
+                :value="old('trimestres')"
+                placeholder="Ingresé la cantidad total de trimestres del programa de formación"
+            />
+
+            @error('trimestres')
                 <livewire:mostrar-alerta :message="$message" />
             @enderror
         </div>

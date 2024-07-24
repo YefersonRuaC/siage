@@ -1,7 +1,17 @@
-<div class="shadow rounded px-3 py-5">
-    <h1 class="font-bold text-center text-2xl text-gray-900">Crear competencia</h1>
-    
-    <div class="border-b border-gray-300 my-2"></div>
+@if (!$isEditMode)
+<div class="shadow rounded px-3 py-4 bg-green-50">
+    <div class="text-center border-b border-green-200 pb-1 mb-1">
+        <p class="text-green-500 font-bold">Modo creación</p>
+    </div>
+@else
+<div class="shadow rounded px-3 py-4 bg-blue-50">
+    <div class="text-center border-b border-blue-200 pb-1 mb-1">
+        <p class="text-blue-500 font-bold">Modo edición</p>
+    </div>
+@endif
+    <h2 class="font-bold text-center text-2xl text-gray-900 mb-1">
+        {{ $isEditMode ? 'Editar competencia' : 'Crear competencia' }}
+    </h2>
 
     <form wire:submit.prevent='crearCompetencia'>
         {{--competencia--}}
@@ -30,7 +40,7 @@
                     <textarea 
                         wire:model="raps.{{ $index }}" 
                         id="rap-{{ $index }}" 
-                        class="border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md w-full h-40"
+                        class="border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md w-full h-44"
                         placeholder="Ingresé el resultado de aprendizaje asociado a la competencia"
                     ></textarea>
                     <button 
@@ -57,10 +67,26 @@
             </div>
         </div>
         
-        <div class="border-b border-gray-300 mt-2"></div>
+        @if ($isEditMode)
+            <div class="border-b border-blue-200 mt-2"></div>
 
-        <x-primary-button class="w-full shadow-md mt-3 bg-green-600 hover:bg-green-700">
-            Crear competencia
-        </x-primary-button>
+            <x-primary-button class="w-full shadow-md mt-3 bg-blue-600 hover:bg-blue-700">
+                Editar competencia
+            </x-primary-button>
+
+            <div class="flex justify-center items-center mt-3">
+                <a  wire:click.prevent="$emit('volverCrear')"
+                    class="flex items-center cursor-pointer underline underline-offset-2 text-red-500 hover:font-bold"    
+                >               
+                    Volver a modo creación
+                </a>
+            </div>
+        @else
+            <div class="border-b border-green-200 mt-2"></div>
+
+            <x-primary-button class="w-full shadow-md mt-3 bg-green-600 hover:bg-green-700">
+                Crear competencia
+            </x-primary-button>
+        @endif
     </form>
 </div>

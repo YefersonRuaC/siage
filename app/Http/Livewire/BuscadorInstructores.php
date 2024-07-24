@@ -27,6 +27,6 @@ class BuscadorInstructores extends Component
 
     public function render()
     {
-        return view('livewire.buscador-instructores');
+        return view('livewire.instructores.buscador-instructores');
     }
 }

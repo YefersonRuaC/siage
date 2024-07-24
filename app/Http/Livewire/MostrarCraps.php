@@ -38,7 +38,7 @@ class MostrarCraps extends Component
 
         $programa = $this->programa;
     
-        return view('livewire.mostrar-craps', [
+        return view('livewire.craps.mostrar-craps', [
             'competencias' => $competencias,
             'programa' => $programa
         ]);

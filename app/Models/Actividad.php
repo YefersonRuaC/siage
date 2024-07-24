@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rap extends Model
+class Actividad extends Model
 {
     use HasFactory;
-
+    
     public $timestamps = false;
 
     protected $fillable = [
-        'rap',
-        'competencia_id'
+        'nombre_corto',
+        'nombre_completo',
+        'trimestre',
+        'competencia_id',
     ];
 
     public function competencia()
@@ -21,8 +23,8 @@ class Rap extends Model
         return $this->belongsTo(Competencia::class, 'competencia_id');
     }
 
-    public function actividads()
+    public function raps()
     {
-        return $this->belongsToMany(Actividad::class, 'actividad_rap');
+        return $this->belongsToMany(Rap::class, 'actividad_rap');
     }
 }

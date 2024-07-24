@@ -65,7 +65,7 @@ class MostrarAprendices extends Component
         })
         ->paginate(6);
 
-        return view('livewire.mostrar-aprendices', [
+        return view('livewire.aprendices.mostrar-aprendices', [
             'aprendizs' => $aprendizs
         ]);
     }

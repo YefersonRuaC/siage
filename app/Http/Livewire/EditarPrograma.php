@@ -12,6 +12,7 @@ class EditarPrograma extends Component
     public $codigo;
     public $nombre_corto;
     public $nombre_completo;
+    public $trimestres;
 
     public function rules()
     {
@@ -19,6 +20,7 @@ class EditarPrograma extends Component
             'codigo' => ['required', 'string',  Rule::unique('programas', 'codigo')->ignore($this->programa_id, 'codigo')],
             'nombre_corto' => ['required', 'string',  Rule::unique('programas', 'nombre_corto')->ignore($this->programa_id, 'codigo')],
             'nombre_completo' => ['required', 'string',  Rule::unique('programas', 'nombre_completo')->ignore($this->programa_id, 'codigo')],
+            'trimestres' => ['required', 'numeric'],
         ];
     }
 
@@ -28,6 +30,7 @@ class EditarPrograma extends Component
         $this->codigo = $programa->codigo;
         $this->nombre_corto = $programa->nombre_corto;
         $this->nombre_completo = $programa->nombre_completo;
+        $this->trimestres = $programa->trimestres;
     }
 
     public function editarPrograma()
@@ -40,6 +43,7 @@ class EditarPrograma extends Component
         $programa->codigo = $datos['codigo'];
         $programa->nombre_corto = strtoupper($datos['nombre_corto']);
         $programa->nombre_completo = $datos['nombre_completo'];
+        $programa->trimestres = $datos['trimestres'];
 
         $programa->save();
 
@@ -50,6 +54,6 @@ class EditarPrograma extends Component
 
     public function render()
     {
-        return view('livewire.editar-programa');
+        return view('livewire.programas.editar-programa');
     }
 }

@@ -18,6 +18,7 @@ class Programa extends Model
         'codigo',
         'nombre_corto',
         'nombre_completo',
+        'trimestres'
     ];
 
     public function competencias()

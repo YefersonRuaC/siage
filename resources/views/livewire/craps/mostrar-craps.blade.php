@@ -7,18 +7,16 @@
     @forelse ($competencias as $competencia)
         <div class="mt-4">
             <div 
-                class="flex justify-between items-center shadow bg-gray-100 px-4 py-3 rounded-md cursor-pointer hover:bg-gray-200 transition-all"
+                class="flex justify-between items-center shadow bg-gray-50 px-4 py-3 rounded-md cursor-pointer hover:bg-gray-100 transition-all"
                 onclick="toggleDropdown('{{ $competencia->id }}')"
             >
                 <h4 class="font-bold flex-auto">{{ $competencia->competencia }}</h4>
                 <div class="flex gap-3 ml-1">
                     <div class="flex flex-col md:flex-row gap-2 md:gap-3">
-                        {{-- <a  href="{{ route('programas.edit', $programa->codigo) }}" --}}
-                        <a  href="#"
-                            class="bg-blue-600 px-2 py-1 rounded-md text-center hover:bg-blue-700 text-white font-bold transition-all"
+                        <a  wire:click.prevent="$emit('cargarCompetencia', '{{ $competencia->id }}')"
+                            class="bg-blue-700 px-2 py-1 rounded-md text-center hover:bg-blue-800 text-white font-bold transition-all"
                         >Editar</a>
-                        <a  
-                            wire:click="$emit('mostrarAlertaCompetencia', '{{ $competencia->id }}')"
+                        <a  wire:click="$emit('mostrarAlertaCompetencia', '{{ $competencia->id }}')"
                             class="bg-red-600 px-2 py-1 rounded-md text-center hover:bg-red-700 text-white font-bold transition-all"
                         >Eliminar</a>
                     </div>
@@ -40,13 +38,12 @@
             >
                 @forelse ($competencia->raps as $rap)
                     <div class="flex px-4 py-4 border-b last-of-type:border-none border-gray-300">
-                        <p class="text-gray-700 flex-auto">● {{ $rap->rap }}</p>
+                        <p class="text-gray-700 flex-auto"><span class="text-black">●</span>{{ $rap->rap }}</p>
                         <div class="flex flex-col items-center justify-center ml-2">
                             {{-- <a  href="#"
                                 class="bg-blue-200 whitespace-nowrap px-4 py-2 text-sm text-center rounded-md hover:bg-blue-300 font-bold transition-all"
                             >Editar rap</a> --}}
-                            <a  
-                                wire:click="$emit('mostrarAlertaRap', '{{ $rap->id }}')"
+                            <a  wire:click="$emit('mostrarAlertaRap', '{{ $rap->id }}')"
                                 class="bg-red-200 whitespace-nowrap text-red-950 px-2 py-2 text-sm text-center rounded-md hover:bg-red-300 font-bold transition cursor-pointer"
                             >Eliminar rap</a>
                         </div>
@@ -115,7 +112,7 @@
             })
         });
 
-        function toggleDropdown(competenciaId) {
+        const toggleDropdown = (competenciaId) => {
             const toggleBtn = document.getElementById(`toggleBtn-${competenciaId}`);
             const dropdownContent = document.getElementById(`dropdownContent-${competenciaId}`);
 

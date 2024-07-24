@@ -50,7 +50,7 @@ class MostrarFichas extends Component
         })
         ->orderBy('created_at', 'desc')->paginate(2);
         
-        return view('livewire.mostrar-fichas', [
+        return view('livewire.fichas.mostrar-fichas', [
             'fichas' => $fichas
         ]);
     }

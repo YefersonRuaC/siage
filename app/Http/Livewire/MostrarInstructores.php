@@ -57,7 +57,7 @@ class MostrarInstructores extends Component
         })
         ->paginate(5);
 
-        return view('livewire.mostrar-instructores', [
+        return view('livewire.instructores.mostrar-instructores', [
             'instructors' => $instructors
         ]);
     }

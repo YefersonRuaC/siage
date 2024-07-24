@@ -101,6 +101,6 @@ class EditarInstructor extends Component
 
     public function render()
     {
-        return view('livewire.editar-instructor');
+        return view('livewire.instructores.editar-instructor');
     }
 }

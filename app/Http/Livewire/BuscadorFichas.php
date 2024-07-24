@@ -32,6 +32,6 @@ class BuscadorFichas extends Component
 
     public function render()
     {
-        return view('livewire.buscador-fichas');
+        return view('livewire.fichas.buscador-fichas');
     }
 }

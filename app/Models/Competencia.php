@@ -24,4 +24,9 @@ class Competencia extends Model
     {
         return $this->hasMany(Rap::class);
     }
+
+    public function actividads()
+    {
+        return $this->hasMany(Actividad::class);
+    }
 }

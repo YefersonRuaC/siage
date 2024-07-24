@@ -5,27 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Programa;
 use Illuminate\Http\Request;
 
-class CrapController extends Controller
+class ActividadController extends Controller
 {
-    public function craps(Programa $programa)
+    /**
+     * Display a listing of the resource.
+     */
+    public function actividads(Programa $programa)
     {
-        return view('craps.craps', [
+        return view('actividads.actividads', [
             'programa' => $programa
         ]);
     }
     
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      */
-    public function index()
+    public function show(Programa $programa)
     {
-        //
+        return view('actividads.show', [
+            'programa' => $programa
+        ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display a listing of the resource.
      */
-    public function edit($id)
+    public function index()
     {
         //
     }
@@ -47,13 +52,12 @@ class CrapController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      */
-    public function show(string $id)
+    public function edit(string $id)
     {
         //
     }
-
 
     /**
      * Update the specified resource in storage.

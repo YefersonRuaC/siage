@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\AprendicesController;
 use App\Http\Controllers\CrapController;
 use App\Http\Controllers\FichaController;
@@ -58,6 +59,10 @@ Route::middleware(['auth', 'verified', 'auth.redirect', 'admins'])->group(functi
 
     //CRaps
     Route::get('/craps/{programa}', [CrapController::class, 'craps'])->name('craps.craps');
+    
+    //Actividades de aprendizaje
+    Route::get('/actividades/{programa}', [ActividadController::class, 'actividads'])->name('actividads.actividads');
+    Route::get('/ruta/{programa}', [ActividadController::class, 'show'])->name('actividads.show');
 });
 
 //-------------------------------------------APRENDIZ----------------------------------------------

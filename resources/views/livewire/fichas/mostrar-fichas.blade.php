@@ -3,7 +3,7 @@
     <livewire:buscador-fichas />
 
     <div class="flex flex-col">
-        <div class="py-2 inline-block min-w-full px-0 md:px-1">
+        <div class="py-2 inline-block min-w-full">
             <div class="overflow-x-auto">
                 <table class="min-w-full">
                     <thead class="bg-gray-100 hover:bg-gray-200 border-b border-gray-300 transition">

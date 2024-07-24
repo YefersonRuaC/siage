@@ -19,7 +19,7 @@ class MostrarProgramas extends Component
         $programas = Programa::orderBy('created_at', 'desc')->paginate(3);
         // dd($programas);
 
-        return view('livewire.mostrar-programas', [
+        return view('livewire.programas.mostrar-programas', [
             'programas' => $programas
         ]);
     }

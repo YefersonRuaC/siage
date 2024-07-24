@@ -63,7 +63,7 @@ class EditarFicha extends Component
     {
         $programas = Programa::all();
 
-        return view('livewire.editar-ficha', [
+        return view('livewire.fichas.editar-ficha', [
             'programas' => $programas
         ]);
     }
